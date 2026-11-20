@@ -1,0 +1,16 @@
+// Cloudflare Workers config — serves the static Vite build (dist/) as Worker static assets.
+// Cloudflare's Git build runs `npm run build`, then `npx wrangler deploy`, which reads this file.
+// No server code: requests for static assets are free.
+{
+  "name": "sakura",
+  "compatibility_date": "2026-11-18",
+  "assets": {
+    "directory": "./dist",
+    // Unknown paths currently fall back to the home page.
+    // Phase 8: switch to "404-page" once a dist/404.html exists.
+    "not_found_handling": "single-page-application"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
