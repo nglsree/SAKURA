@@ -5,8 +5,9 @@
  */
 const env = import.meta.env;
 
-export const GITHUB_URL: string = env.VITE_GITHUB_URL || "https://github.com/your-org/sakura"; // PLACEHOLDER
-export const IS_GITHUB_PLACEHOLDER = !env.VITE_GITHUB_URL;
+/** Public repository. Override with VITE_GITHUB_URL (e.g. for a fork). */
+export const GITHUB_URL: string = env.VITE_GITHUB_URL || "https://github.com/nglsree/SAKURA";
+export const IS_GITHUB_PLACEHOLDER = GITHUB_URL.includes("your-org");
 
 export const CONTACT_EMAIL: string = env.VITE_CONTACT_EMAIL || "hello@sakura.example"; // PLACEHOLDER
 
@@ -15,7 +16,7 @@ export const PROFILE_DOMAIN = "sakura.example";
 
 export const LINKS = {
   repo: GITHUB_URL,
-  source: `${GITHUB_URL}`,
+  source: `${GITHUB_URL}/tree/main`,
   contribute: `${GITHUB_URL}/blob/main/CONTRIBUTING.md`,
   issues: `${GITHUB_URL}/issues`,
 };

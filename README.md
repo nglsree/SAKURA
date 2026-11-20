@@ -87,13 +87,13 @@ Other scripts:
 
 | What               | Where                                              |
 | ------------------ | -------------------------------------------------- |
-| GitHub repo URL    | `VITE_GITHUB_URL` env var, or `src/config.ts`      |
+| GitHub repo URL    | already set to github.com/nglsree/SAKURA (`src/config.ts`; override with `VITE_GITHUB_URL`) |
 | Contact email      | `VITE_CONTACT_EMAIL` env var, or `src/config.ts`   |
 | Domain             | `index.html` (canonical / og:url), `public/robots.txt`, `public/sitemap.xml` |
 | Profile domain     | `PROFILE_DOMAIN` in `src/config.ts` (mockups use the reserved `sakura.example`) |
 | Social image       | add `public/og-image.png` (1200×630) and un-comment the tag in `index.html` |
 
-While `VITE_GITHUB_URL` is unset, the site visibly labels GitHub links as placeholders.
+GitHub links point to the real repository. If you point `VITE_GITHUB_URL` at a URL containing `your-org`, the site labels the links as placeholders.
 Copy `.env.example` to `.env` to set them locally. These are **public** build-time values — never put secrets in `VITE_*` variables.
 
 ---
@@ -120,7 +120,7 @@ git branch -M main
 ```
 
 ```powershell
-git remote add origin https://github.com/YOUR-USERNAME/sakura.git
+git remote add origin https://github.com/nglsree/SAKURA.git
 ```
 
 ```powershell
