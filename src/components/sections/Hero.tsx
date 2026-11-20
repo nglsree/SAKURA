@@ -207,8 +207,8 @@ export function Hero() {
           </div>
 
           {/* Theme quick-switch */}
-          <div className="mt-12 flex items-center gap-3 rounded-full border border-line bg-white/70 p-1.5 pl-4 backdrop-blur" role="group" aria-label="Preview theme">
-            <span className="text-[12.5px] text-ink-soft">Try a look</span>
+          <div className="mt-12 flex items-center gap-3 rounded-full border border-line bg-white/70 p-1.5 backdrop-blur sm:pl-4" role="group" aria-label="Preview theme">
+            <span className="hidden whitespace-nowrap text-[12.5px] text-ink-soft sm:inline">Try a look</span>
             <div className="flex gap-1">
               {heroThemes.map((t, i) => (
                 <button
@@ -216,7 +216,7 @@ export function Hero() {
                   type="button"
                   onClick={() => setThemeIdx(i)}
                   aria-pressed={i === themeIdx}
-                  className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-[12.5px] transition-all ${
+                  className={`flex items-center gap-2 whitespace-nowrap rounded-full px-3 py-1.5 text-[12.5px] transition-all ${
                     i === themeIdx ? "bg-ink text-ivory" : "text-ink-soft hover:bg-ink/5 hover:text-ink"
                   }`}
                 >
