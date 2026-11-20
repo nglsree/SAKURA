@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   SAKURA design tokens
+   Site tokens are plain CSS variables so they can be re-themed later.
+   Tailwind utilities (bg-ivory, text-ink, font-display …) map onto them.
+------------------------------------------------------------------- */
+:root {
+  --ivory: #fbf8f3;
+  --paper: #f4eee5;
+  --cream: #efe6da;
+  --ink: #1f1b1a;
+  --ink-soft: #57504c;
+  --ink-faint: #8a817b;
+  --line: rgb(31 27 26 / 0.1);
+  --line-strong: rgb(31 27 26 / 0.18);
+  --blossom: #f4c7d1;
+  --blossom-soft: #fae3e8;
+  --rose: #b8405e; /* accessible accent on ivory (AA for text) */
+  --rose-deep: #8f2d47;
+  --moss: #6f7a5a;
+
+  /* Typography — two-font brand system */
+  --font-brand: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-brand-jp: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", Meiryo,
+    "DM Sans", sans-serif;
+  /* System monospace only for the code snippet — no extra download */
+  --font-code: ui-monospace, SFMono-Regular, "Cascadia Code", Menlo, Consolas, monospace;
+
+  --radius-xl: 28px;
+  --shadow-soft: 0 1px 2px rgb(31 27 26 / 0.04), 0 8px 24px -12px rgb(31 27 26 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(31 27 26 / 0.04), 0 30px 60px -24px rgb(31 27 26 / 0.28);
+}
+
+@theme {
+  --color-ivory: var(--ivory);
+  --color-paper: var(--paper);
+  --color-cream: var(--cream);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-blossom: var(--blossom);
+  --color-blossom-soft: var(--blossom-soft);
+  --color-rose: var(--rose);
+  --color-rose-deep: var(--rose-deep);
+  --color-moss: var(--moss);
+
+  /* font-sans  → DM Sans: wordmark, nav, buttons, body, labels, cards
+     font-display / font-jp → Noto Sans JP: editorial headings + Japanese accents (used selectively)
+     font-mono  → system monospace for code */
+  --font-sans: var(--font-brand);
+  --font-display: var(--font-brand-jp);
+  --font-jp: var(--font-brand-jp);
+  --font-mono: var(--font-code);
+
+  --shadow-soft: var(--shadow-soft);
+  --shadow-lift: var(--shadow-lift);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+  section[id] {
+    scroll-margin-top: 84px;
+  }
+  /* Noto Sans JP has no italic — emphasis is carried by color and weight instead of faux-italics */
+  h1 em,
+  h2 em,
+  .font-display em {
+    font-style: normal;
+    font-weight: 400;
+  }
+  :lang(ja) {
+    font-family: var(--font-brand-jp);
+    font-style: normal;
+    letter-spacing: 0.08em;
+  }
+  ::selection {
+    background: var(--blossom);
+    color: var(--ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--rose);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    font-family: var(--font-brand);
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  /* Faint paper grain — pure CSS, no image request */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  .hairline-grid {
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+}
+
+/* Hide scrollbars inside the phone mockups while keeping them scrollable */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -10%, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--drift, 40px), 110vh, 0) rotate(var(--spin, 260deg));
+    opacity: 0;
+  }
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .petal,
+  .marquee-track {
+    animation: none !important;
+  }
+  .petal {
+    display: none;
+  }
+}

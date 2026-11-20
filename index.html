@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAKURA — Your space. Your style. Your links.</title>
+    <meta
+      name="description"
+      content="Sakura is a free-first, open-source link-in-bio platform for designers, artists, photographers, developers and creators. Customize everything — wallpapers, fonts, colors, icons and layouts."
+    />
+    <meta name="theme-color" content="#FBF8F3" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <!-- Replace with your real domain once it exists -->
+    <link rel="canonical" href="https://sakura.example/" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SAKURA" />
+    <meta property="og:title" content="SAKURA — Your corner of the internet. Your rules." />
+    <meta
+      property="og:description"
+      content="A beautiful, free-first link-in-bio page that actually feels like you. Open source and built for creatives."
+    />
+    <meta property="og:url" content="https://sakura.example/" />
+    <!-- TODO: add a 1200×630 public/og-image.png, then uncomment and switch twitter:card to summary_large_image -->
+    <!-- <meta property="og:image" content="https://sakura.example/og-image.png" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SAKURA — Your space. Your style. Your links." />
+    <meta
+      name="twitter:description"
+      content="A free-first, open-source link-in-bio platform for creatives."
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "SAKURA",
+        "url": "https://sakura.example/",
+        "description": "A free-first, open-source link-in-bio platform for creatives."
+      }
+    </script>
+
+    <!--
+      Fonts
+      · Brand:  DM Sans (primary UI, 400–700 variable) + Noto Sans JP (selective headings & Japanese accents, 400/500/700)
+      · Demo:   fonts used only inside the theme previews (Instrument Serif, Geist Mono, Space Grotesk, Syne, Fraunces, Archivo Black)
+      display=swap keeps text visible while fonts load. Google serves Noto Sans JP in unicode-range slices,
+      so only the Latin slice and the few kana/kanji slices actually on the page are downloaded.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Geist+Mono:wght@400;500&family=Space+Grotesk:wght@400;600&family=Syne:wght@600;800&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Archivo+Black&display=swap"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <p style="padding:2rem;font-family:system-ui">
+        SAKURA — a free-first, open-source link-in-bio platform for creatives. Please enable JavaScript to view
+        the interactive landing page.
+      </p>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

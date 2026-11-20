@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Replace with your real domain once it exists
+Sitemap: https://sakura.example/sitemap.xml
