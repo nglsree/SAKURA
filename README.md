@@ -204,13 +204,27 @@ Link-in-bio pages live on phones, so the landing page does too:
 
 ## 🚀 Quick start
 
-> Requires **Node.js 20.19+ or 22.12+**
+> Requires **Node.js 20.19+ or 22.12+** and npm.
+
+### Installation
 
 ```bash
 git clone https://github.com/nglsree/SAKURA.git
 cd SAKURA
 npm install
-npm run dev        # → http://localhost:5173
+```
+
+### Development
+
+```bash
+npm run dev        # → http://localhost:5173 (hot reload)
+```
+
+### Production build
+
+```bash
+npm run build      # type-check + static build → dist/
+npm run preview    # serve dist/ locally to check it
 ```
 
 | Command | What it does |

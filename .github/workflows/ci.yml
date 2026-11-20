@@ -1,24 +1,54 @@
-# Builds the site on every push and pull request so broken code never reaches main.
+# Build verification — runs on every push and pull request so broken code never reaches main.
+# Deployment is handled separately by Cloudflare Pages; this workflow never deploys.
 name: CI
 
 on:
-  push:
-    branches: [main]
-  pull_request:
+  push:            # any branch
+  pull_request:    # opened, updated (synchronize) or reopened
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
+    name: Install & build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node (version from .nvmrc)
+        uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: .nvmrc
           cache: npm
-      - run: npm ci
-      - run: npm run build
-      - uses: actions/upload-artifact@v4
+
+      - name: Install dependencies (from package-lock.json)
+        run: npm ci
+
+      - name: Production build (type-check + Vite)
+        run: npm run build
+
+      - name: Upload build output
+        uses: actions/upload-artifact@v4
         with:
           name: dist
           path: dist
           retention-days: 7
+
+      - name: Report result
+        if: always()
+        run: |
+          if [ "${{ job.status }}" = "success" ]; then
+            echo "### ✅ Build succeeded" >> "$GITHUB_STEP_SUMMARY"
+            echo "Node $(node -v) · output size: $(du -sh dist | cut -f1)" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "### ❌ Build failed" >> "$GITHUB_STEP_SUMMARY"
+            echo "Open the failed step above for the error output." >> "$GITHUB_STEP_SUMMARY"
+          fi

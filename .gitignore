@@ -1,14 +1,39 @@
-node_modules
-dist
-*.local
+# ── Dependencies ─────────────────────────────
+node_modules/
+
+# ── Build output ─────────────────────────────
+dist/
+*.tsbuildinfo
+
+# ── Environment files (may hold private values) ──
 .env
 .env.*
 !.env.example
+*.local
+
+# ── Logs ─────────────────────────────────────
+*.log
+logs/
+
+# ── OS files ─────────────────────────────────
 .DS_Store
 Thumbs.db
-*.log
+desktop.ini
+
+# ── Editors / IDEs ───────────────────────────
 .vscode/*
 !.vscode/extensions.json
-.idea
-.wrangler
-.claude
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-workspace
+
+# ── Local tool caches & dev artifacts ────────
+.cache/
+.eslintcache
+coverage/
+.wrangler/
+.vercel/
+.netlify/
+.claude/
